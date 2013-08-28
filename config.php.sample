@@ -4,8 +4,7 @@
         'default_settings' => array(
             'params' => array(
                 'key'    => '...',
-                'secret' => '...',
-                'region' => 'us-west-2'
+                'secret' => '...'
                 )
             )
         )
