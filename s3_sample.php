@@ -26,13 +26,13 @@ $aws = Aws::factory('./config.php');
 $client = $aws->get('s3');
 
 // Generate a unique bucket name
-$bucket = 'php-sdk-sample' . uniqid();
+$bucket = 'php-sdk-sample-' . uniqid();
 
 // Create the bucket
 printf("Creating bucket named %s\n", $bucket);
 $result = $client->createBucket(array(
-            'Bucket' => $bucket
-            ));
+    'Bucket' => $bucket
+));
 
 // Wait until the bucket is created
 $client->waitUntil('BucketExists', array('Bucket' => $bucket));
@@ -42,9 +42,33 @@ $key = 'hello_world.txt';
 
 printf("Creating a new object with key %s\n", $key);
 $result = $client->putObject(array(
-            'Bucket' => $bucket,
-            'Key' => $key,
-            'Body' => "Hello World!"
-            ));
+    'Bucket' => $bucket,
+    'Key' => $key,
+    'Body' => "Hello World!"
+));
+
+// Get the object
+echo "Downloading that same object:\n";
+$result = $client->getObject(array(
+    'Bucket' => $bucket,
+    'Key' => $key
+));
+
+echo "\n---BEGIN---\n";
+echo $result['Body'];
+echo "\n---END---\n\n";
+
+// And now, delete it.
+printf("Deleting object with key %s\n", $key);
+$result = $client->deleteObject(array(
+    'Bucket' => $bucket,
+    'Key' => $key
+));
+
+// And delete the bucket, too.
+printf("Deleting bucket %s\n", $bucket);
+$result = $client->deleteBucket(array(
+    'Bucket' => $bucket
+));
 
 ?>
