@@ -20,8 +20,9 @@ variables:
     export AWS_SECRET_KEY="your-aws-secret-access-key"
 
 See the [Security Credentials](http://aws.amazon.com/security-credentials) page
-for more information on getting your keys and the [AWS SDK for PHP documentation](http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html)
-covers a number of other ways to set credentials.
+for more information on getting your keys. You can also set your credentials in
+a couple of other ways. See the [AWS SDK for PHP documentation](http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html)
+for more information.
 
 ## Running the S3 sample
 
