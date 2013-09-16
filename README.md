@@ -12,19 +12,22 @@ install Composer and the SDK, run:
 
 ## Basic Configuration
 
-You need to set your AWS security credentials in `config.php` before the sample
-is able to connect to AWS. An example of this file is provided as
-`config.php.sample`. Copy this file to `config.php` and edit the key and secret
-params to use your credentials.
+You need to set your AWS security credentials before the sample is able to
+connect to AWS. The SDK will automatically pick up credentials in environment
+variables:
+
+    export AWS_ACCESS_KEY_ID="your-aws-access-key-id"
+    export AWS_SECRET_KEY="your-aws-secret-access-key"
 
 See the [Security Credentials](http://aws.amazon.com/security-credentials) page
-for more information on getting your keys.
+for more information on getting your keys and the [AWS SDK for PHP documentation](http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html)
+covers a number of other ways to set credentials.
 
 ## Running the S3 sample
 
 This sample application connects to Amazon's [Simple Storage Service (S3)](http://aws.amazon.com/s3),
 creates a bucket, and uploads a file to that bucket. The sample code will
-generate a bucket name and a file for you. All you need to do is run the
+generate a bucket name and a file for you, so all you need to do is run the
 code:
 
     php -f s3_sample.php

@@ -22,7 +22,7 @@ use Aws\S3\S3Client;
 use Aws\Common\Aws;
 
 // Instantiate the S3 client with your AWS credentials and desired AWS region
-$aws = Aws::factory('./config.php');
+$aws = Aws::factory();
 $client = $aws->get('s3');
 
 // Generate a unique bucket name
