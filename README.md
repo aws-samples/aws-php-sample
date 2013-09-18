@@ -31,7 +31,7 @@ creates a bucket, and uploads a file to that bucket. The sample code will
 generate a bucket name and a file for you, so all you need to do is run the
 code:
 
-    php -f s3_sample.php
+    php s3_sample.php
 
 The S3 documentation has a good overview of the [restrictions for bucket names](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)
 for when you start making your own buckets.

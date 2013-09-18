@@ -70,5 +70,3 @@ printf("Deleting bucket %s\n", $bucket);
 $result = $client->deleteBucket(array(
     'Bucket' => $bucket
 ));
-
-?>
