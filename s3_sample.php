@@ -21,14 +21,29 @@ require 'vendor/autoload.php';
 use Aws\S3\S3Client;
 use Aws\Common\Aws;
 
-// Instantiate the S3 client with your AWS credentials and desired AWS region
+/*
+ Instantiate the S3 client with your AWS credentials and desired AWS region
+ Instantiate a new client for Amazon Simple Storage Service (S3). With no
+ parameters or configuration, the AWS SDK for PHP will look for access keys
+ in these environment variables:
+ 
+     AWS_ACCESS_KEY_ID='...'
+     AWS_SECRET_KEY='...'
+ 
+ For more information about this interface to Amazon S3, see:
+ http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/service-s3.html#creating-a-client
+*/
 $aws = Aws::factory();
 $client = $aws->get('s3');
 
-// Generate a unique bucket name
-$bucket = 'php-sdk-sample-' . uniqid();
+/*
+ Everything uploaded to Amazon S3 must belong to a bucket. These buckets are
+ in the global namespace, and must have a unique name.
 
-// Create the bucket
+ For more information about bucket name restrictions, see:
+ http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html
+*/
+$bucket = 'php-sdk-sample-' . uniqid();
 printf("Creating bucket named %s\n", $bucket);
 $result = $client->createBucket(array(
     'Bucket' => $bucket
@@ -37,7 +52,14 @@ $result = $client->createBucket(array(
 // Wait until the bucket is created
 $client->waitUntil('BucketExists', array('Bucket' => $bucket));
 
-// Create an object in the bucket
+/*
+ Files in Amazon S3 are called "objects" and are stored in buckets. A specific
+ object is referred to by its key (i.e., name) and holds data. Here, we create
+ a new object with the key "hello_world.txt" and content "Hello World!".
+
+ For a detailed list of putObject's parameters, see:
+ http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_putObject
+*/
 $key = 'hello_world.txt';
 
 printf("Creating a new object with key %s\n", $key);
@@ -47,7 +69,15 @@ $result = $client->putObject(array(
     'Body' => "Hello World!"
 ));
 
-// Get the object
+/*
+ Download the object and read the body directly.
+
+ For more examples of downloading objects, see the developer guide:
+ http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/service-s3.html#downloading-objects
+
+ Or the API documentation:
+ http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_getObject
+*/
 echo "Downloading that same object:\n";
 $result = $client->getObject(array(
     'Bucket' => $bucket,
@@ -58,14 +88,30 @@ echo "\n---BEGIN---\n";
 echo $result['Body'];
 echo "\n---END---\n\n";
 
-// And now, delete it.
+/*
+ Buckets cannot be deleted unless they're empty. With the AWS SDK for PHP, you
+ have two options:
+
+  - Use the clearBucket helper:
+      http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_clearBucket
+  - Or individually delete all objects.
+
+ Since this sample created a new unique bucket and uploaded a single object,
+ we'll just delete that object.
+*/
 printf("Deleting object with key %s\n", $key);
 $result = $client->deleteObject(array(
     'Bucket' => $bucket,
     'Key' => $key
 ));
 
-// And delete the bucket, too.
+
+/*
+ Now that the bucket is empty, it can be deleted.
+
+ See the API documentation for more information on deleteBucket:
+ http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_deleteBucket
+*/
 printf("Deleting bucket %s\n", $bucket);
 $result = $client->deleteBucket(array(
     'Bucket' => $bucket
