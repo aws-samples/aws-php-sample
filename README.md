@@ -6,7 +6,7 @@ A simple PHP application illustrating usage of the AWS SDK for PHP.
 
 A `composer.json` file declaring the dependency on the AWS SDK is provided. To
 install Composer and the SDK, run:
-    
+
     curl -sS https://getcomposer.org/installer | php
     php composer.phar install
 
@@ -31,7 +31,7 @@ creates a bucket, and uploads a file to that bucket. The sample code will
 generate a bucket name and a file for you, so all you need to do is run the
 code:
 
-    php s3_sample.php
+    php sample.php
 
 The S3 documentation has a good overview of the [restrictions for bucket names](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)
 for when you start making your own buckets.
