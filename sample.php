@@ -1,13 +1,13 @@
 <?php
 /*
  * Copyright 2013. Amazon Web Services, Inc. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,14 +22,10 @@ use Aws\S3\S3Client;
 use Aws\Common\Aws;
 
 /*
- Instantiate the S3 client with your AWS credentials and desired AWS region
- Instantiate a new client for Amazon Simple Storage Service (S3). With no
- parameters or configuration, the AWS SDK for PHP will look for access keys
- in these environment variables:
- 
-     AWS_ACCESS_KEY_ID='...'
-     AWS_SECRET_KEY='...'
- 
+ If you instantiate a new client for Amazon Simple Storage Service (S3) with
+ no parameters or configuration, the AWS SDK for PHP will look for access keys
+ in the AWS_ACCESS_KEY_ID and AWS_SECRET_KEY environment variables.
+
  For more information about this interface to Amazon S3, see:
  http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/service-s3.html#creating-a-client
 */
@@ -50,7 +46,7 @@ $result = $client->createBucket(array(
 ));
 
 // Wait until the bucket is created
-$client->waitUntil('BucketExists', array('Bucket' => $bucket));
+$client->waitUntilBucketExists(array('Bucket' => $bucket));
 
 /*
  Files in Amazon S3 are called "objects" and are stored in buckets. A specific
@@ -61,12 +57,11 @@ $client->waitUntil('BucketExists', array('Bucket' => $bucket));
  http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_putObject
 */
 $key = 'hello_world.txt';
-
 printf("Creating a new object with key %s\n", $key);
 $result = $client->putObject(array(
     'Bucket' => $bucket,
-    'Key' => $key,
-    'Body' => "Hello World!"
+    'Key'    => $key,
+    'Body'   => "Hello World!"
 ));
 
 /*
@@ -81,7 +76,7 @@ $result = $client->putObject(array(
 echo "Downloading that same object:\n";
 $result = $client->getObject(array(
     'Bucket' => $bucket,
-    'Key' => $key
+    'Key'    => $key
 ));
 
 echo "\n---BEGIN---\n";
@@ -102,9 +97,8 @@ echo "\n---END---\n\n";
 printf("Deleting object with key %s\n", $key);
 $result = $client->deleteObject(array(
     'Bucket' => $bucket,
-    'Key' => $key
+    'Key'    => $key
 ));
-
 
 /*
  Now that the bucket is empty, it can be deleted.
