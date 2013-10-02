@@ -19,7 +19,6 @@
 require 'vendor/autoload.php';
 
 use Aws\S3\S3Client;
-use Aws\Common\Aws;
 
 /*
  If you instantiate a new client for Amazon Simple Storage Service (S3) with
@@ -29,8 +28,7 @@ use Aws\Common\Aws;
  For more information about this interface to Amazon S3, see:
  http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/service-s3.html#creating-a-client
 */
-$aws = Aws::factory();
-$client = $aws->get('s3');
+$client = S3Client::factory();
 
 /*
  Everything uploaded to Amazon S3 must belong to a bucket. These buckets are
