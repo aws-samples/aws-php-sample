@@ -37,8 +37,8 @@ $client = S3Client::factory();
  For more information about bucket name restrictions, see:
  http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html
 */
-$bucket = 'php-sdk-sample-' . uniqid();
-printf("Creating bucket named %s\n", $bucket);
+$bucket = uniqid("php-sdk-sample-", true);
+echo "Creating bucket named {$bucket}\n";
 $result = $client->createBucket(array(
     'Bucket' => $bucket
 ));
@@ -55,7 +55,7 @@ $client->waitUntilBucketExists(array('Bucket' => $bucket));
  http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_putObject
 */
 $key = 'hello_world.txt';
-printf("Creating a new object with key %s\n", $key);
+echo "Creating a new object with key {$key}\n";
 $result = $client->putObject(array(
     'Bucket' => $bucket,
     'Key'    => $key,
@@ -92,7 +92,7 @@ echo "\n---END---\n\n";
  Since this sample created a new unique bucket and uploaded a single object,
  we'll just delete that object.
 */
-printf("Deleting object with key %s\n", $key);
+echo "Deleting object with key {$key}\n";
 $result = $client->deleteObject(array(
     'Bucket' => $bucket,
     'Key'    => $key
@@ -104,7 +104,7 @@ $result = $client->deleteObject(array(
  See the API documentation for more information on deleteBucket:
  http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.S3.S3Client.html#_deleteBucket
 */
-printf("Deleting bucket %s\n", $bucket);
+echo "Deleting bucket {$bucket}\n";
 $result = $client->deleteBucket(array(
     'Bucket' => $bucket
 ));
