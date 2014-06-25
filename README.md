@@ -17,7 +17,7 @@ connect to AWS. The SDK will automatically pick up credentials in environment
 variables:
 
     export AWS_ACCESS_KEY_ID="your-aws-access-key-id"
-    export AWS_SECRET_KEY="your-aws-secret-access-key"
+    export AWS_SECRET_ACCESS_KEY="your-aws-secret-access-key"
 
 See the [Security Credentials](http://aws.amazon.com/security-credentials) page
 for more information on getting your keys. You can also set your credentials in
