@@ -26,6 +26,8 @@ for more information.
 
 ## Running the S3 sample
 
+If you are using IAM security credentials, the user account must have the Full S3 Access policy attached.
+
 This sample application connects to Amazon's [Simple Storage Service (S3)](http://aws.amazon.com/s3),
 creates a bucket, and uploads a file to that bucket. The sample code will
 generate a bucket name and a file for you, so all you need to do is run the
