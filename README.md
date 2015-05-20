@@ -14,7 +14,7 @@ install Composer and the SDK, run:
 
 You need to set up your AWS security credentials before the sample code is able
 to connect to AWS. You can do this by creating a file named "credentials" at ~/.aws/ 
-(C:\Users\USER_NAME\.aws\ for Windows users) and saving the following lines in the file:
+(C:\Users\USER_NAME\\.aws\ for Windows users) and saving the following lines in the file:
 
     [default]
     aws_access_key_id = <your access key id>
