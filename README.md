@@ -22,7 +22,7 @@ to connect to AWS. You can do this by creating a file named "credentials" at ~/.
 
 See the [Security Credentials](http://aws.amazon.com/security-credentials) page
 for more information on getting your keys. You can also set your credentials in
-a couple of other ways. See the [AWS SDK for PHP documentation](http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html)
+a couple of other ways. See the [AWS SDK for PHP documentation](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/guide/credentials.html)
 for more information.
 
 ## Running the S3 sample
