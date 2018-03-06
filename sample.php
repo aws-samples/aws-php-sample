@@ -88,6 +88,8 @@ echo "\n----END----\n\n";
  which allow you to store and retrieve data from Amazon S3 using PHP's built-in functions
  like file_get_contents, fopen, copy, etc.
 
+ Just postin stuff
+
  For more information about stream wrappers, see the Amazon S3 Stream Wrapper
  section in the developer guide:
  http://docs.aws.amazon.com/aws-sdk-php/v3/guide/service/s3-stream-wrapper.html
